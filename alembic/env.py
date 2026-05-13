@@ -5,7 +5,8 @@ from sqlalchemy import pool
 
 from app.config import settings
 from app.database import Base
-from app.auth.models import User  # noqa
+from app.auth.models import User
+from app.finance.models import Category, Transaction, Budget  # noqa
 
 from alembic import context
 
