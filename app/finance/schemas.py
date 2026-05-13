@@ -7,7 +7,7 @@ from app.finance.models import TransactionType
 class CategoryCreate(BaseModel):
     name: str = Field(
         min_length=1,
-        max_length=100,
+        max_length=50,
         description="Category name",
         examples=["Groceries"],
     )
@@ -30,7 +30,7 @@ class TransactionCreate(BaseModel):
     transaction_date: date = Field(description="Date the transaction occurred")
     notes: Optional[str] = Field(
         default=None,
-        max_length=500,
+        max_length=255,
         description="Optional notes about the transaction",
     )
 

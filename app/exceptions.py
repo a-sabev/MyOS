@@ -1,4 +1,4 @@
-class UserAlreadyExistsError(Exception):
+class DuplicateError(Exception):
     pass
 
 class InvalidCredentialsError(Exception):

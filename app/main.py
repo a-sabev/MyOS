@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from app.exceptions import UserAlreadyExistsError, InvalidCredentialsError, NotFoundError
+from app.exceptions import UserAlreadyExistsError, InvalidCredentialsError, NotFoundError, CategoryAlreadyExistsError
 from app.auth.router import router as auth_router
 
 app = FastAPI(
@@ -24,7 +24,7 @@ app.include_router(auth_router)
 
 @app.exception_handler(UserAlreadyExistsError)
 async def user_exists_handler(request: Request, exc: UserAlreadyExistsError):
-    return JSONResponse(status_code=400, content={"detail": str(exc)})
+    return JSONResponse(status_code=409, content={"detail": str(exc)})
 
 @app.exception_handler(InvalidCredentialsError)
 async def invalid_credentials_handler(request: Request, exc: InvalidCredentialsError):
@@ -34,3 +34,6 @@ async def invalid_credentials_handler(request: Request, exc: InvalidCredentialsE
 async def not_found_handler(request: Request, exc: NotFoundError):
     return JSONResponse(status_code=404, content={"detail": str(exc)})
 
+@app.exception_handler(CategoryAlreadyExistsError)
+async def category_exists_handler(request: Request, exc: CategoryAlreadyExistsError):
+    return JSONResponse(status_code=409, content={"detail": str(exc)})
