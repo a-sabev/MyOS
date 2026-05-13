@@ -5,7 +5,6 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
 
-# an example mapping using the base
 class User(Base):
     __tablename__ = "users"
 
